@@ -31,7 +31,7 @@ SDIO	X
 SPI	X
 SysTick	O		no IT
 TIM	X
-USART	0		no DMA	
+USART	0		add DMA FOR STD LIB	
 WWDG	X
 =================================
 O:complete
