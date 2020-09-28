@@ -14,21 +14,26 @@ Cortex-m3:STM32F103ZETx
 Cortex-m4:STM32F410RBTx
 	 STM32F427ZI
 
-Task:
-ADC
-CAN
-DAC
-EXTI
-FLASH
-GPIO
-I2C
-I2S
-IWDG
-RNG
-RTC
-SDIO
-SPI
-SysTick
-TIM	
-USART		
-WWDG
+=================================
+Task:	Progress		Detail
+ADC	X
+CAN	X
+DAC	X
+EXTI	X
+FLASH	X
+GPIO	O
+I2C	X
+I2S	X
+IWDG	X
+RNG	X
+RTC	X
+SDIO	X
+SPI	X
+SysTick	O		no IT
+TIM	X
+USART	0		no DMA	
+WWDG	X
+=================================
+O:complete
+X:no edit
+-:doing
