@@ -1,3 +1,15 @@
+/**
+  ******************************************************************************
+  * @file    STM32_ALL_Peripheral_Application\STM32F4\STD_LIB\UART_USE_DMA\APP\MY_DMA.h
+  * @author  Fourth Team - yanzong
+  * @version V1.0.0
+  * @date    2020-10-12
+  * @brief   Header for MY_DMA.h module
+  ******************************************************************************
+  * @attention
+  ******************************************************************************
+  */
+
 #ifndef		__MY_DMA_H__
 #define 	__MY_DMA_H__
 #include "stm32f4xx.h"
