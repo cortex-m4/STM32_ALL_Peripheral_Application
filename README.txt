@@ -30,7 +30,11 @@ RTC	X
 SDIO	X
 SPI	X
 SysTick	O		no IT
-TIM	X
+TIM	O
+	TIM_PWM_OUT	O
+	TIM_PWM_IN	X	
+	TIM_BASE_IT	X
+	TIM_Encoder	X
 USART	0		add DMA FOR STD LIB	
 WWDG	X
 =================================
