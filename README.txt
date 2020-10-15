@@ -16,7 +16,7 @@ Cortex-m4:STM32F410RBTx
 
 =================================
 Task:	Progress		Detail
-ADC	X
+ADC	O		ADC_DMA for STM32F1
 CAN	X
 DAC	X
 EXTI	X
