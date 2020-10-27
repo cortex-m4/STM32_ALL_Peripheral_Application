@@ -19,13 +19,13 @@ Task:	Progress		Detail
 ADC	O		ADC_DMA for STM32F1
 CAN	X
 DAC	X
-EXTI	X
-FLASH	X
+EXTI	O
+FLASH	O
 GPIO	O
 I2C	X
 I2S	X
 IWDG	O
-RNG	X
+RNG	O
 RTC	X
 SDIO	X
 SPI	X
@@ -35,7 +35,7 @@ TIM	O
 	TIM_PWM_IN	X	
 	TIM_BASE_IT	O
 	TIM_Encoder	X
-USART	0		add DMA FOR STD LIB	
+USART	O		add DMA FOR STD LIB	
 WWDG	X
 =================================
 O:complete
