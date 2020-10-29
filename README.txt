@@ -35,6 +35,7 @@ TIM	O
 	TIM_PWM_IN	X	
 	TIM_BASE_IT	O
 	TIM_Encoder	X
+	TIM_InputCapture	O
 USART	O		add DMA FOR STD LIB	
 WWDG	X
 =================================
