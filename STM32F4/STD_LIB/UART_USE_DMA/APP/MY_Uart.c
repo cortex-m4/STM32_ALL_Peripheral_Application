@@ -4,6 +4,7 @@
   * @file    STM32_ALL_Peripheral_Application\STM32F4\STD_LIB\UART_USE_DMA\APP\MY_Uart.c
   * @author  Fourth Team - yanzong
   * @version V1.0.0
+	* @version V1.1.0	2020-11-11 增加了DMA的接收 将接收的数据放入了Uart2_RxBuff
   * @date    2020-10-12
   * @brief   UART program body
   ******************************************************************************
@@ -12,9 +13,18 @@
   ******************************************************************************
   */
 
+
+
 #include "stdio.h"
 #include "MY_Uart.h"
 #include "MY_DMA.h"
+
+
+             
+uint8_t read_point=0;
+uint16_t Uart2_RxCounter=0;
+char Uart2_RxBuff[UART2_RXBUFF_SIZE]; 
+
  /**
   * @brief  配置嵌套向量中断控制器NVIC
   * @param  无
@@ -25,7 +35,7 @@ static void UART_NVIC_Config(void)
   NVIC_InitTypeDef NVIC_InitStructure; 
   NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);
   /* 嵌套向量中断控制器组选择 */
-  NVIC_InitStructure.NVIC_IRQChannel = USART2_IRQn;
+  NVIC_InitStructure.NVIC_IRQChannel = UART_IT_SOURCE;
  /* 配置USART为中断源 */
   NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 1;
    /* 抢断优先级*/
@@ -88,6 +98,7 @@ void USART_Config(uint16_t USART_IT_MODE)
 	// 串口中断优先级配置
 	
 	USART_ITConfig(USE_UART2, USART_IT_MODE, ENABLE);	
+	USART_ITConfig(USE_UART2, USART_IT_IDLE, ENABLE);	
 	// 使能串口接收中断
 	
 	USART_Cmd(USE_UART2, ENABLE);		
@@ -153,6 +164,7 @@ void USART_DMA_SendStart(DMA_Stream_TypeDef *DMA_Streamx, u16 m_u16SendCnt)
 } 
 
 
+
 //重定向printf到串口，重定向后可使用printf函数
 int fputc(int ch, FILE *f)
 {
@@ -175,17 +187,32 @@ int fgetc(FILE *f)
 }
 
 void USART2_IRQHandler(void){
-	uint8_t read_point;
-	if(USART_GetITStatus(USART2,USART_IT_IDLE)!=RESET)
+	
+//	if((USART_GetITStatus(UART_Print, USART_IT_RXNE) != RESET)){
+//		Uart2_RxBuff[Uart2_RxCounter]=UART_Print->DR;
+//		Uart2_RxCounter++;
+//		USART_ClearITPendingBit(UART_Print,USART_IT_RXNE); // 清除标志位
+//	}	
+		
+	
+	if(USART_GetITStatus(UART_Print,USART_IT_IDLE)!=RESET)
 	{	
+		//read_point=0;
+		//Uart_Send_String(UART_Print,Uart2_RxBuff);
+		Uart2_RxCounter=UART_Print->SR;			//清除USART_IT_IDLE标志  步骤1 
+		Uart2_RxCounter=UART_Print->DR;			//清除USART_IT_IDLE标志  步骤2
+		Uart2_RxCounter=UART2_RXBUFF_SIZE-DMA_GetCurrDataCounter(DMA_STREAM_RX);
+		memcpy(Uart2_RxBuff, DMA_READ_UART, 1024);	 
+		memset(DMA_READ_UART,0,1024);
 		DMA_Cmd(DMA_STREAM_RX,DISABLE);
-		read_point=USART1->SR;
-		read_point = USART_ReceiveData(USART2);
+		
+		
 		DMA_ClearFlag(DMA_STREAM_RX,DMA_FLAG_TCIF5 | DMA_FLAG_FEIF5 | DMA_FLAG_DMEIF5 | DMA_FLAG_TEIF5 | DMA_FLAG_HTIF5);
-        DMA_SetCurrDataCounter(DMA_STREAM_RX, BUFFER_SIZE);  
-        DMA_Cmd(DMA_STREAM_RX, ENABLE); //  这两行是重新设置DMA  让这个搬运工准备下一次的工作
-		USART_ClearITPendingBit(USART2,USART_IT_IDLE); // 清除标志位
+    DMA_SetCurrDataCounter(DMA_STREAM_RX, BUFFER_SIZE);  
+    DMA_Cmd(DMA_STREAM_RX, ENABLE); //  这两行是重新设置DMA  让这个搬运工准备下一次的工作
+		USART_ClearITPendingBit(UART_Print,USART_IT_IDLE); // 清除标志位
 	}	
+	
 }
 
 

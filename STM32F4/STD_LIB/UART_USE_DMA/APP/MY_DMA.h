@@ -30,16 +30,19 @@
 #define DMA_STREAM_TX            DMA1_Stream6
 #define DMA_STREAM_RX            DMA1_Stream5
 
-#define DMA_CHANNEL              DMA_Channel_4
-#define DMA_STREAM_CLOCK         RCC_AHB1Periph_DMA1 
+#define DMA_TX_CHANNEL              DMA_Channel_4
+#define DMA_RX_CHANNEL							DMA_Channel_4
+#define DMA_STREAM_CLOCK        	 RCC_AHB1Periph_DMA1 
 
 #define DMA_STREAM_IRQ           DMA1_Stream6_IRQn
 #define DMA_IT_TCIF_TX              DMA_IT_TCIF6				//数据流传输完成
 #define DMA_STREAM_TX_IRQHANDLER    DMA1_Stream6_IRQHandler	
 #define DMA_STREAM_RX_IRQHANDLER    DMA1_Stream5_IRQHandler	
 
-#define BUFFER_SIZE              32
+#define BUFFER_SIZE              1024
 #define TIMEOUT_MAX              10000 /* Maximum timeout value */
+
+extern uint8_t DMA_READ_UART[BUFFER_SIZE];
 
 void DMA_NVIC_Config(void);
 void DMA_NVIC_DeInit(void);

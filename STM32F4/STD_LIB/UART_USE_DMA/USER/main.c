@@ -29,6 +29,8 @@
 #include "main.h"
 
 extern uint8_t aDST_Buffer[BUFFER_SIZE];
+extern char Uart2_RxBuff[UART2_RXBUFF_SIZE]; 
+extern uint8_t read_point;
 
 /** @addtogroup Template_Project
   * @{
@@ -58,8 +60,9 @@ void USART2_DMA_SendByte(u8 *m_pSendBuf, u16 m_u16SendCnt)
 {    
 	memset(aDST_Buffer,0,sizeof aDST_Buffer);	//清空这个数组的数据
 	memcpy(aDST_Buffer, m_pSendBuf, m_u16SendCnt);	  
-    USART_DMA_SendStart(DMA_STREAM_TX, m_u16SendCnt); //启动一次DMA传输      
+  USART_DMA_SendStart(DMA_STREAM_TX, m_u16SendCnt); //启动一次DMA传输      
 }
+
 /**
   * @brief  Main program
   * @param  None
@@ -73,7 +76,7 @@ int main(void)
 	
 	LED_GPIO_Init();
 	
-	USART_Config(USART_IT_IDLE);
+	USART_Config(USART_IT_RXNE);
 	
 	DMA_Config();
 	
@@ -92,11 +95,14 @@ int main(void)
 		
 		USART2_DMA_SendByte("\r\nhello,world\r\n",15);
 		USART_DMACmd (USART2,USART_DMAReq_Tx ,ENABLE);
-		Delay_ms(5000);
+		Delay_ms(1000);
 		
 		USART2_DMA_SendByte("\r\nni,hao\r\n",10);
 		USART_DMACmd (USART2,USART_DMAReq_Tx ,ENABLE);
-		Delay_ms(5000);
+		Delay_ms(1000);
+		USART2_DMA_SendByte(Uart2_RxBuff,strlen(Uart2_RxBuff));
+		USART_DMACmd (USART2,USART_DMAReq_Tx ,ENABLE);
+		Delay_ms(1000);
 	}
 }
 

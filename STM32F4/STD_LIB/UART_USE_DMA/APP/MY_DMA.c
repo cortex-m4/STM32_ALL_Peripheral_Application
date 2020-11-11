@@ -57,11 +57,11 @@ void DMA_Config(void)
   }
   
   /* Configure DMA Stream for TX */
-  DMA_InitStructure_TX.DMA_Channel = DMA_CHANNEL;  					//选择通道
+  DMA_InitStructure_TX.DMA_Channel = DMA_TX_CHANNEL;  					//选择通道
   DMA_InitStructure_TX.DMA_PeripheralBaseAddr =USART2_DR_BASE;			//外设基地址
   DMA_InitStructure_TX.DMA_Memory0BaseAddr =(uint32_t) aDST_Buffer;	//外部memory地址
   DMA_InitStructure_TX.DMA_DIR = DMA_DIR_MemoryToPeripheral;			//传送方向
-  DMA_InitStructure_TX.DMA_BufferSize = (uint8_t)BUFFER_SIZE;			//大小
+  DMA_InitStructure_TX.DMA_BufferSize = (uint16_t)BUFFER_SIZE;			//大小
   DMA_InitStructure_TX.DMA_PeripheralInc = DMA_PeripheralInc_Disable;	//外设地址自增？ 失能
   DMA_InitStructure_TX.DMA_MemoryInc = DMA_MemoryInc_Enable;			//memory地址自增 使能
   DMA_InitStructure_TX.DMA_PeripheralDataSize = DMA_PeripheralDataSize_Byte;
@@ -73,12 +73,15 @@ void DMA_Config(void)
   DMA_InitStructure_TX.DMA_MemoryBurst = DMA_MemoryBurst_Single;
   DMA_InitStructure_TX.DMA_PeripheralBurst = DMA_PeripheralBurst_Single;
   DMA_Init(DMA_STREAM_TX, &DMA_InitStructure_TX);
+	
+	
+	
   /* Configure DMA Stream for RX */
-  DMA_InitStructure_RX.DMA_Channel = DMA_CHANNEL;  						//选择通道
+  DMA_InitStructure_RX.DMA_Channel = DMA_RX_CHANNEL;  						//选择通道
   DMA_InitStructure_RX.DMA_PeripheralBaseAddr =USART2_DR_BASE;			//外设基地址
   DMA_InitStructure_RX.DMA_Memory0BaseAddr =(uint32_t) DMA_READ_UART;	//memory地址
   DMA_InitStructure_RX.DMA_DIR = DMA_DIR_PeripheralToMemory;			//传送方向
-  DMA_InitStructure_RX.DMA_BufferSize = (uint8_t)BUFFER_SIZE;			//大小
+  DMA_InitStructure_RX.DMA_BufferSize = (uint16_t)BUFFER_SIZE;			//大小
   DMA_InitStructure_RX.DMA_PeripheralInc = DMA_PeripheralInc_Disable;	//外设地址自增？ 失能
   DMA_InitStructure_RX.DMA_MemoryInc = DMA_MemoryInc_Enable;			//memory地址自增 使能
   DMA_InitStructure_RX.DMA_PeripheralDataSize = DMA_PeripheralDataSize_Byte;
