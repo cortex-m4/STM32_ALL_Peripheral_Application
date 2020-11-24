@@ -4,6 +4,8 @@
   * @author  Fourth Team - yanzong
   * @version V1.0.0
   * @date    2020-10-21
+  * @version V1.0.1				通用定时器中断 2 3 4 的实现
+  * @date    2020-11-24			
   * @brief   basic TIMER interrupt
   ******************************************************************************
   * @attention
@@ -13,7 +15,9 @@
   */
 #include "MY_TIM_IT.h"
 
-
+uint16_t tim2_counter=0;
+uint16_t tim3_counter=0;
+uint16_t tim4_counter=0;
 /*
 	param:
 	*psc:分频
@@ -21,15 +25,36 @@
 
 */
 
-void Basic_TIM_Init(uint16_t psc,uint32_t arr){
+void Basic_TIM_Init(uint8_t timx,uint16_t psc,uint32_t arr){
+	TIM_TypeDef* tim;
+	uint8_t priority=0;
 	TIM_TimeBaseInitTypeDef TIM_TimeBaseInitStructure;
 	NVIC_InitTypeDef NVIC_InitStructure;
 	NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);
-	RCC_APB1PeriphClockCmd(USE_Basic_TIM_CLK,ENABLE);  ///使能USE_Basic_TIM时钟
 	
-	NVIC_InitStructure.NVIC_IRQChannel=USE_Basic_TIM_IRQn; 							//定时器3中断
-	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority=0x03; 	//抢占优先级1
-	NVIC_InitStructure.NVIC_IRQChannelSubPriority=0x03; 				//子优先级3
+	switch(timx){
+		case 2:
+					RCC_APB1PeriphClockCmd(TIM2_CLK,ENABLE);  ///使能USE_Basic_TIM时钟
+					NVIC_InitStructure.NVIC_IRQChannel=TIM2_IRQn;
+					tim=TIM2;
+					priority=2;
+		break; 							
+		case 3:
+					RCC_APB1PeriphClockCmd(TIM3_CLK,ENABLE);  ///使能USE_Basic_TIM时钟
+					NVIC_InitStructure.NVIC_IRQChannel=TIM3_IRQn;
+					tim=TIM3;
+					priority=3;
+		break; 							
+		case 4:
+					RCC_APB1PeriphClockCmd(TIM4_CLK,ENABLE);  ///使能USE_Basic_TIM时钟
+					NVIC_InitStructure.NVIC_IRQChannel=TIM4_IRQn;
+					tim=TIM4;
+					priority=4;
+		break; 								
+	}
+
+	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority=priority; 	//抢占优先级1
+	NVIC_InitStructure.NVIC_IRQChannelSubPriority=priority; 				//子优先级3
 	NVIC_InitStructure.NVIC_IRQChannelCmd=ENABLE;
 	NVIC_Init(&NVIC_InitStructure);
 	
@@ -48,7 +73,13 @@ void Basic_TIM_Init(uint16_t psc,uint32_t arr){
 }
 
 
-__weak void Basic_IT_Callback(void){
+__weak void TIM2_IT_Callback(void){
+									
+}
+__weak void TIM3_IT_Callback(void){
+									
+}
+__weak void TIM4_IT_Callback(void){
 									
 }
 
@@ -62,7 +93,25 @@ void TIM2_IRQHandler(void)
 	}
 	
 }
-
+//定时器3中断服务函数
+void TIM3_IRQHandler(void)
+{
+	if(TIM_GetITStatus(TIM3,TIM_IT_Update)!= RESET) //溢出中断
+	{
+		TIM3_IT_Callback();
+		TIM_ClearITPendingBit(TIM3,TIM_IT_Update);  //清除中断标志位
+	}
+	
+}
+//定时器4中断服务函数
+void TIM4_IRQHandler(void)
+{
+	if(TIM_GetITStatus(TIM4,TIM_IT_Update)!= RESET)	//溢出中断
+	{
+		TIM4_IT_Callback();
+		TIM_ClearITPendingBit(TIM4,TIM_IT_Update);  //清除中断标志位
+	}
+}
 
 
 
