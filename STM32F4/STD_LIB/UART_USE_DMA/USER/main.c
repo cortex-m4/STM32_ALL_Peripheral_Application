@@ -28,8 +28,7 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 
-extern uint8_t aDST_Buffer[BUFFER_SIZE];
-extern char Uart2_RxBuff[UART2_RXBUFF_SIZE]; 
+
 extern uint8_t read_point;
 
 /** @addtogroup Template_Project
@@ -56,12 +55,7 @@ void Modify_UART_DATA(uint8_t *data){
 
 
 
-void USART2_DMA_SendByte(u8 *m_pSendBuf, u16 m_u16SendCnt)  
-{    
-	memset(aDST_Buffer,0,sizeof aDST_Buffer);	//清空这个数组的数据
-	memcpy(aDST_Buffer, m_pSendBuf, m_u16SendCnt);	  
-  USART_DMA_SendStart(DMA_STREAM_TX, m_u16SendCnt); //启动一次DMA传输      
-}
+
 
 /**
   * @brief  Main program
@@ -70,22 +64,22 @@ void USART2_DMA_SendByte(u8 *m_pSendBuf, u16 m_u16SendCnt)
   */
 int main(void)
 {
-	int i;
 	
 	Systick_Init();
 	
 	LED_GPIO_Init();
 	
-	USART_Config(USART_IT_RXNE);
+	UART_ALL_Init();		//串口初始化
 	
+	Delay_ms(100);
+	printf("\n\rDMA UART Test\r\n");
 	DMA_Config();
 	
 	Delay_ms(100);
     //填充要发送的数据
-	for(i=0;i<BUFFER_SIZE;i++){
-		aDST_Buffer[i]='a';
-	}
-	printf("\n\rDMA UART Test\r\n");
+//	for(i=0;i<BUFFER_SIZE;i++){
+//		aDST_Buffer[i]='a';
+//	}
 	//串口向DMA发出请求
 	USART_DMACmd(USART2,USART_DMAReq_Tx,ENABLE);
 	USART_DMACmd(USART2,USART_DMAReq_Rx,ENABLE);
@@ -94,14 +88,14 @@ int main(void)
 	{
 		
 		USART2_DMA_SendByte("\r\nhello,world\r\n",15);
-		USART_DMACmd (USART2,USART_DMAReq_Tx ,ENABLE);
+		
 		Delay_ms(1000);
 		
 		USART2_DMA_SendByte("\r\nni,hao\r\n",10);
-		USART_DMACmd (USART2,USART_DMAReq_Tx ,ENABLE);
+		
 		Delay_ms(1000);
 		USART2_DMA_SendByte(Uart2_RxBuff,strlen(Uart2_RxBuff));
-		USART_DMACmd (USART2,USART_DMAReq_Tx ,ENABLE);
+
 		Delay_ms(1000);
 	}
 }

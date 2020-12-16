@@ -14,6 +14,7 @@
 #define 	__MY_DMA_H__
 #include "stm32f4xx.h"
 #include "MY_GPIO.h"
+#include "main.h"
 
 //================UART DATE REG BASE ADDR==================
 #define USART1_DR_BASE			0X40011004
@@ -41,6 +42,10 @@
 
 #define BUFFER_SIZE              1024
 #define TIMEOUT_MAX              10000 /* Maximum timeout value */
+
+
+extern uint8_t aDST_Buffer[BUFFER_SIZE];
+
 
 extern uint8_t DMA_READ_UART[BUFFER_SIZE];
 
