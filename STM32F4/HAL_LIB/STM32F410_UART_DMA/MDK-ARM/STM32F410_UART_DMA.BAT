@@ -1,0 +1,31 @@
+SET PATH=C:\Keil_v5\ARM\ARMCC\Bin;D:\SoftWare\STM32CubeMX\;C:\Program Files (x86)\NetSarang\Xshell 6\;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\windows\system32;C:\windows;C:\windows\System32\Wbem;C:\windows\System32\WindowsPowerShell\v1.0\;C:\windows\System32\OpenSSH\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\Program Files\Git\cmd;C:\Program Files\Pandoc\;D:\SoftWare\Altium Designer\System;D:\Work\Make\xpack-windows-build-tools-2.12.2\bin;C:\Program Files (x86)\GNU Arm Embedded Toolchain\9 2020-q2-update\arm-none-eabi\bin;C:\Program Files (x86)\GNU Arm Embedded Toolchain\9 2020-q2-update\bin;C:\Program Files (x86)\STMicroelectronics\STM32 ST-LINK Utility\ST-LINK Utility;C:\Program Files\Java\jre1.8.0_261\bin;D:\SoftWare\Putty\;C:\Users\bad_a\AppData\Local\Programs\Python\Python39;C:\Users\bad_a\AppData\Local\Programs\Python\Python39\Scripts;C:\Windows\Microsoft.NET\Framework\v4.0.30319;C:\Program Files\dotnet\;C:\Users\bad_a\.p2\pool\plugins\org.eclipse.justj.openjdk.hotspot.jre.full.win32.x86_64_15.0.2.v20210201-0955\jre\bin;C:\Users\bad_a\AppData\Local\Android\Sdk\tools;C:\Users\bad_a\AppData\Local\Android\Sdk\platform-tools;C:\Program Files (x86)\Atmel\sam-ba_2.12\drv\;C:\Program Files (x86)\Atmel\sam-ba_2.12;C:\Users\bad_a\AppData\Local\Microsoft\WindowsApps;C:\Program Files\Bandizip\;D:\Work\Microsoft VS Code\bin;C:\Users\bad_a\.dotnet\tools;C:\Users\bad_a\.p2\pool\plugins\org.eclipse.justj.openjdk.hotspot.jre.full.win32.x86_64_15.0.2.v20210201-0955\jre\bin;;C:\Program Files\Java\jre1.8.0_261\bin
+SET CPU_TYPE=STM32F410RBTx
+SET CPU_VENDOR=STMicroelectronics
+SET UV2_TARGET=STM32F410_UART_DMA
+SET CPU_CLOCK=0x00F42400
+"C:\Keil_v5\ARM\ARMCC\Bin\ArmAsm" --Via "stm32f410_uart_dma\startup_stm32f410rx._ia"
+"C:\Keil_v5\ARM\ARMCC\Bin\ArmCC" --Via "stm32f410_uart_dma\main.__i"
+"C:\Keil_v5\ARM\ARMCC\Bin\ArmCC" --Via "stm32f410_uart_dma\gpio.__i"
+"C:\Keil_v5\ARM\ARMCC\Bin\ArmCC" --Via "stm32f410_uart_dma\dma.__i"
+"C:\Keil_v5\ARM\ARMCC\Bin\ArmCC" --Via "stm32f410_uart_dma\usart.__i"
+"C:\Keil_v5\ARM\ARMCC\Bin\ArmCC" --Via "stm32f410_uart_dma\stm32f4xx_it.__i"
+"C:\Keil_v5\ARM\ARMCC\Bin\ArmCC" --Via "stm32f410_uart_dma\stm32f4xx_hal_msp.__i"
+"C:\Keil_v5\ARM\ARMCC\Bin\ArmCC" --Via "stm32f410_uart_dma\stm32f4xx_hal_tim.__i"
+"C:\Keil_v5\ARM\ARMCC\Bin\ArmCC" --Via "stm32f410_uart_dma\stm32f4xx_hal_tim_ex.__i"
+"C:\Keil_v5\ARM\ARMCC\Bin\ArmCC" --Via "stm32f410_uart_dma\stm32f4xx_hal_uart.__i"
+"C:\Keil_v5\ARM\ARMCC\Bin\ArmCC" --Via "stm32f410_uart_dma\stm32f4xx_hal_rcc.__i"
+"C:\Keil_v5\ARM\ARMCC\Bin\ArmCC" --Via "stm32f410_uart_dma\stm32f4xx_hal_rcc_ex.__i"
+"C:\Keil_v5\ARM\ARMCC\Bin\ArmCC" --Via "stm32f410_uart_dma\stm32f4xx_hal_flash.__i"
+"C:\Keil_v5\ARM\ARMCC\Bin\ArmCC" --Via "stm32f410_uart_dma\stm32f4xx_hal_flash_ex.__i"
+"C:\Keil_v5\ARM\ARMCC\Bin\ArmCC" --Via "stm32f410_uart_dma\stm32f4xx_hal_flash_ramfunc.__i"
+"C:\Keil_v5\ARM\ARMCC\Bin\ArmCC" --Via "stm32f410_uart_dma\stm32f4xx_hal_gpio.__i"
+"C:\Keil_v5\ARM\ARMCC\Bin\ArmCC" --Via "stm32f410_uart_dma\stm32f4xx_hal_dma_ex.__i"
+"C:\Keil_v5\ARM\ARMCC\Bin\ArmCC" --Via "stm32f410_uart_dma\stm32f4xx_hal_dma.__i"
+"C:\Keil_v5\ARM\ARMCC\Bin\ArmCC" --Via "stm32f410_uart_dma\stm32f4xx_hal_pwr.__i"
+"C:\Keil_v5\ARM\ARMCC\Bin\ArmCC" --Via "stm32f410_uart_dma\stm32f4xx_hal_pwr_ex.__i"
+"C:\Keil_v5\ARM\ARMCC\Bin\ArmCC" --Via "stm32f410_uart_dma\stm32f4xx_hal_cortex.__i"
+"C:\Keil_v5\ARM\ARMCC\Bin\ArmCC" --Via "stm32f410_uart_dma\stm32f4xx_hal.__i"
+"C:\Keil_v5\ARM\ARMCC\Bin\ArmCC" --Via "stm32f410_uart_dma\stm32f4xx_hal_exti.__i"
+"C:\Keil_v5\ARM\ARMCC\Bin\ArmCC" --Via "stm32f410_uart_dma\system_stm32f4xx.__i"
+"C:\Keil_v5\ARM\ARMCC\Bin\ArmLink" --Via "STM32F410_UART_DMA\STM32F410_UART_DMA.lnp"
+"C:\Keil_v5\ARM\ARMCC\Bin\fromelf.exe" "STM32F410_UART_DMA\STM32F410_UART_DMA.axf" --i32combined --output "STM32F410_UART_DMA\STM32F410_UART_DMA.hex"

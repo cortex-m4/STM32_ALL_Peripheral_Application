@@ -1,0 +1,6 @@
+--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include
+-I.\RTE\_STM32F410_UART_DMA
+-IC:\Users\bad_a\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include
+-IC:\Users\bad_a\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.13.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include
+-D__UVISION_VERSION="531" -D_RTE_ -DSTM32F410Rx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F410Rx
+-o stm32f410_uart_dma\stm32f4xx_hal_tim.o --omf_browse stm32f410_uart_dma\stm32f4xx_hal_tim.crf --depend stm32f410_uart_dma\stm32f4xx_hal_tim.d "../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim.c"

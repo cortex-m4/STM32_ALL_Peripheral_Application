@@ -1,0 +1,6 @@
+--cpu Cortex-M4.fp.sp -g --apcs=interwork --pd "__MICROLIB SETA 1"
+-I.\RTE\_STM32F410_UART_DMA
+-IC:\Users\bad_a\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include
+-IC:\Users\bad_a\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.13.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include
+--pd "__UVISION_VERSION SETA 531" --pd "_RTE_ SETA 1" --pd "STM32F410Rx SETA 1" --pd "_RTE_ SETA 1"
+--list startup_stm32f410rx.lst --xref -o stm32f410_uart_dma\startup_stm32f410rx.o --depend stm32f410_uart_dma\startup_stm32f410rx.d "startup_stm32f410rx.s"
