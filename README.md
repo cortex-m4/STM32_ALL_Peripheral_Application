@@ -1,4 +1,4 @@
-Describe:	
+#Describe:	
 use save all stm32 peripheral application
 include hal lib,std lib
 
@@ -14,7 +14,7 @@ Cortex-m3:STM32F103ZETx
 Cortex-m4:STM32F410RBTx
 	 STM32F427ZI
 
-===============STD==================
+##STD
 Task:	Progress		Detail
 ADC		O		ADC_DMA for STM32F1
 CAN		X
@@ -39,8 +39,8 @@ TIM		O
 USART	O		add DMA FOR STD LIB	
 WWDG	X
 USB
-=================================
-===============HAL==================
+
+##HAL
 Task:	Progress		Detail
 ADC		X		ADC_DMA for STM32F1
 CAN		O
@@ -65,7 +65,7 @@ TIM		X
 USART	O		add DMA FOR STD LIB	
 WWDG	X
 USB		
-=================================
+>Other
 O:complete
 X:no edit
 -:doing
