@@ -1,0 +1,1 @@
+f407_spi_sfud\startup_stm32f407xx.o: startup_stm32f407xx.s

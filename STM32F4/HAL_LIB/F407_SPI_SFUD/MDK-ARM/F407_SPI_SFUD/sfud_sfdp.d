@@ -1,0 +1,9 @@
+f407_spi_sfud\sfud_sfdp.o: ..\OtherLib\sfud\src\sfud_sfdp.c
+f407_spi_sfud\sfud_sfdp.o: ..\OtherLib\sfud\inc\sfud.h
+f407_spi_sfud\sfud_sfdp.o: ..\OtherLib\sfud\inc\sfud_def.h
+f407_spi_sfud\sfud_sfdp.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+f407_spi_sfud\sfud_sfdp.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
+f407_spi_sfud\sfud_sfdp.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+f407_spi_sfud\sfud_sfdp.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
+f407_spi_sfud\sfud_sfdp.o: ..\OtherLib\sfud\inc\sfud_cfg.h
+f407_spi_sfud\sfud_sfdp.o: ..\OtherLib\sfud\inc\sfud_flash_def.h
